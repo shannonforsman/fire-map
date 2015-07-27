@@ -57,10 +57,9 @@ app.post('/tweets', function(req, res){
       req.session.tweets = tweets
       res.json(tweets)
     } else {
-      // console.log(error);
+      console.log(error);
     }
   })
-  // app.get('/tweets')
 })
 //
 

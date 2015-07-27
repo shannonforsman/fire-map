@@ -147,7 +147,7 @@ fireLocations.get('/locations', function () {
         } else {
           tweets.forEach(function (el) {
             if (el.entities.urls.length > 0) {
-              content += '<h3>' + el.text + ' <a href=' + el.entities.urls[0].expanded_url + ' target="_blank">Go to link</a></h3>'
+                content += '<h3>' + el.text + ' <a href=' + el.entities.urls[0].expanded_url + ' target="_blank">Go to link</a></h3>'
 
             } else {
               content += '<h3>' + el.text + '</h3>'
