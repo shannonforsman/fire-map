@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+
+ html, body, #map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}
+
+body {
+  position: relative;
+}
+
+ .box {
+  background-image: url('/images/twitter-logo.png');
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+/* .arrow {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right:10px solid blue;
+}
+ */
