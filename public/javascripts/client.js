@@ -133,31 +133,32 @@ function initialize () {
 
 fireLocations.get('/locations', function () {
   var locations = JSON.parse(this.response)
-  locations.forEach(function (el) {
+  locations.forEach(function (elem) {
     var iconBase = '/images/fire.svg'
     var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(el['geo:lat'][0], el['geo:long'][0]),
+      position: new google.maps.LatLng(elem['geo:lat'][0], elem['geo:long'][0]),
       map: map,
       icon: iconBase
     })
     google.maps.event.addListener(marker, 'click', function () {
       var content = ''
       map.setCenter(marker.getPosition())
-      twitter.post('/tweets', JSON.stringify(el), function () {
+      twitter.post('/tweets', JSON.stringify(elem), function () {
+        console.log(elem)
         var tweetObj = JSON.parse(this.response)
         var tweets = tweetObj.statuses
         if (tweets.length === 0) {
           infowindow.setContent('<h3>Sorry, there are no tweets on this fire</h3>')
         } else {
           tweets.forEach(function (el) {
+
             content += '<h3>' + el.text + '</h3>'
           })
-          infowindow.setContent('<div class="arrow"></div><div class="box"><h2>' + el.title + '</h2>' + content + '</div>')
+          infowindow.setContent('<div class="arrow"></div><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0,250) + '...<a href=' + elem.link[0] + '>Learn More</a></p><div class="box">' + content + '</div>')
         }
       })
       infowindow.setContent('')
       infowindow.open(map, this)
-      console.log(infowindow)
     })
   })
 })

@@ -33,6 +33,11 @@ h2 {
   margin-bottom: 16px;
   padding-top: 8px;
   padding-left: 48px;
+  padding-bottom: 6px;
+  background-image: url('/images/twitter-logo.png');
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: top left;
 }
 
 h3 {
@@ -48,3 +53,7 @@ h3 {
 h4 {font-size: 1.2em;}
 
 small, .font_small {font-size: 0.833em;}
+
+strong {
+  font-weight: bold;
+}
