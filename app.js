@@ -11,6 +11,7 @@ var Twitter = require('twitter');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var session = require('express-session')
+var autolinker = require( 'autolinker' )
 
 
 var app = express();
@@ -54,7 +55,9 @@ app.post('/tweets', function(req, res){
   var params = {q: title, count: 20};
   client.get('search/tweets', params, function(error, tweets, response){
     if (!error) {
-      req.session.tweets = tweets
+      tweets.statuses.forEach(function(el){
+        el.text = autolinker.link(el.text)
+      })
       res.json(tweets)
     } else {
       console.log(error);

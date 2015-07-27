@@ -25,6 +25,8 @@ var map
 
 // var infowindow = new google.maps.InfoWindow()
 
+
+
 var infowindow = new InfoBox({
      disableAutoPan: false,
      pixelOffset: new google.maps.Size(10, -300),
@@ -33,14 +35,16 @@ var infowindow = new InfoBox({
         background: "rgba(255,255,255, .85)",
         width: "400px",
         height: "416px",
-        overflowX: 'visible',
-        overflowY: 'scroll',
-        padding: '16px'
+        padding: '16px',
     },
     closeBoxMargin: "0px 0px 16px 16px",
     closeBoxURL: "../images/close.png",
-    infoBoxClearance: new google.maps.Size(1, 1)
+    infoBoxClearance: new google.maps.Size(1, 1),
+    isHidden: false,
+    pane: "floatPane"
 });
+
+
 
 function initialize () {
   var myLatlng = new google.maps.LatLng(40.042119, -100.260929)
@@ -143,16 +147,10 @@ fireLocations.get('/locations', function () {
         var tweetObj = JSON.parse(this.response)
         var tweets = tweetObj.statuses
         if (tweets.length === 0) {
-          infowindow.setContent('Sorry, there are no tweets on this fire')
+          infowindow.setContent('<h3>Sorry, there are no tweets on this fire</h3>')
         } else {
           tweets.forEach(function (el) {
-            if (el.entities.urls.length > 0) {
-                content += '<h3>' + el.text + ' <a href=' + el.entities.urls[0].expanded_url + ' target="_blank">Go to link</a></h3>'
-
-            } else {
-              content += '<h3>' + el.text + '</h3>'
-            }
-
+            content += '<h3>' + el.text + '</h3>'
           })
           infowindow.setContent('<div class="arrow"></div><div class="box"><h2>' + el.title + '</h2>' + content + '</div>')
         }
@@ -167,5 +165,7 @@ fireLocations.get('/locations', function () {
 function moveMap () {
   map.panBy(0, -200)
 }
+
+
 
 google.maps.event.addDomListener(window, 'load', initialize)

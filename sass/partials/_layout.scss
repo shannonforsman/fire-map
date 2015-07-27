@@ -18,13 +18,16 @@ body {
   background-size: 40px;
   background-repeat: no-repeat;
   background-position: top left;
+  overflow: auto;
+  height: 100%;
+  padding-right: 16px;
+  width: 100%;
 }
 
-/* .arrow {
+ .arrow {
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-right:10px solid blue;
 }
- */
