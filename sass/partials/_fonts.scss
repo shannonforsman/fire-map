@@ -5,21 +5,18 @@ html {font-size: 1em;}
 body {
   line-height: 1.45;
   color: #333;
-  font-family: 'Lato'
+  font-family: 'Lato';
 }
 
-p {
-  margin-bottom: 1.3em;
-  color: $light-grey;
-}
-
-h1, h2, h3, h4 {
+h1, h2, h3 {
   line-height: 1.2;
+  font-family: 'Lato';
+
 }
 
 h1 {
   margin-top: 0;
-  font-size: 2.074em;
+  font-size: 40px;
   color: $white;
   font-weight: 100;
   margin-bottom: 0;
@@ -28,31 +25,45 @@ h1 {
 }
 
 h2 {
-  font-size: 1.728em;
-  color: $blue;
+  font-size: 28px;
+  color: $dark-grey-muted;
   margin-bottom: 16px;
-  padding-top: 8px;
-  padding-left: 48px;
-  padding-bottom: 6px;
-  background-image: url('/images/twitter-logo.png');
-  background-size: 40px;
-  background-repeat: no-repeat;
-  background-position: top left;
 }
 
 h3 {
-  font-size: 1.44em;
-  color: $grey;
+  font-size: 20px;
+  color: $blue;
+  padding-bottom: 6px;
+  background-image: url('/images/twitter-logo.png');
+  background-size: 32px;
+  padding-left: 42px;
+  background-repeat: no-repeat;
+  background-position: top left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-bottom: 16px;
-  a {
-    color: $blue;
-    text-decoration: none;
-  }
 }
 
-h4 {font-size: 1.2em;}
+a {
+  color: $blue;
+  text-decoration: none;
+}
 
-small, .font_small {font-size: 0.833em;}
+h4 {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: $grey;
+}
+
+
+p {
+  margin-bottom: 16px;
+  color: $dark-grey-muted;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 16px;
+}
+
 
 strong {
   font-weight: bold;

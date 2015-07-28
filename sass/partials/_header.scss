@@ -8,5 +8,16 @@ header {
   h1 {
     width: 50%;
     padding: 32px;
+    float: left;
+  }
+  .description {
+    width: 50%;
+    float: right;
+    padding: 32px;
+    p {
+      color: $water;
+      border-bottom: none;
+      font-weight: 100;
+    }
   }
 }

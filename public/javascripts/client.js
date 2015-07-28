@@ -29,12 +29,12 @@ var map
 
 var infowindow = new InfoBox({
      disableAutoPan: false,
-     pixelOffset: new google.maps.Size(10, -300),
+     pixelOffset: new google.maps.Size(100, -300),
      zIndex: null,
      boxStyle: {
         background: "rgba(255,255,255, .85)",
         width: "400px",
-        height: "416px",
+        height: "500px",
         padding: '16px',
     },
     closeBoxMargin: "0px 0px 16px 16px",
@@ -133,28 +133,34 @@ function initialize () {
 
 fireLocations.get('/locations', function () {
   var locations = JSON.parse(this.response)
+  var gmarkers = []
   locations.forEach(function (elem) {
-    var iconBase = '/images/fire.svg'
+    var iconBase = '/images/fire3.png'
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(elem['geo:lat'][0], elem['geo:long'][0]),
       map: map,
       icon: iconBase
     })
-    google.maps.event.addListener(marker, 'click', function () {
+    gmarkers.push(marker)
+      // console.log(locations)
+    google.maps.event.addListener(marker, 'click', function (e) {      // marker.setIcon("/images/fire.png")
+    for (var i = 0; i < gmarkers.length; i++) {
+     gmarkers[i].setIcon('/images/fire3.png');
+    }
+      this.setIcon("/images/fire2.png")
       var content = ''
       map.setCenter(marker.getPosition())
       twitter.post('/tweets', JSON.stringify(elem), function () {
-        console.log(elem)
         var tweetObj = JSON.parse(this.response)
         var tweets = tweetObj.statuses
         if (tweets.length === 0) {
-          infowindow.setContent('<h3>Sorry, there are no tweets on this fire</h3>')
+          infowindow.setContent('<div class="arrow"></div><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0,240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>')
         } else {
           tweets.forEach(function (el) {
 
-            content += '<h3>' + el.text + '</h3>'
+            content += '<h4>' + el.text + '</h4>'
           })
-          infowindow.setContent('<div class="arrow"></div><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0,250) + '...<a href=' + elem.link[0] + '>Learn More</a></p><div class="box">' + content + '</div>')
+          infowindow.setContent('<div class="arrow"></div><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0,240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>')
         }
       })
       infowindow.setContent('')

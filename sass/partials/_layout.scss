@@ -15,7 +15,7 @@ body {
 
  .box {
   overflow: auto;
-  height: 80%;
+  height: 50%;
   padding-right: 16px;
   width: 100%;
 }
@@ -25,7 +25,8 @@ body {
    height: 0;
    border-top: 15px solid transparent;
    border-bottom: 15px solid transparent;
-   border-right: 15px solid #fff;
+   border-right: 15px solid $white;
+   opacity: .85;
    position: absolute;
    left: -15px;
    bottom: 80px;
