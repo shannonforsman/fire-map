@@ -106,7 +106,7 @@ strong {
 * {
   box-sizing: border-box; }
 
-html, body, #map-canvas {
+html, body, #map-canvas, #my-fire-map {
   height: 100%;
   margin: 0px;
   padding: 0px; }

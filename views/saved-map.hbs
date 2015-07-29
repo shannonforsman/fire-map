@@ -1,14 +1,14 @@
-<div id="map-canvas"></div>
+<div id="my-fire-map"></div>
 <header>
   <h1>Current active U.S. fires</h1>
   <div class="description">
     <p id='register-form'>Get up to date information about current fires based on inciweb data and twitter feeds</p>
-    {{#if id}}
-      {{id}}
+    {{#if email}}
+      {{email}}
       <a href="/logout">Logout</a> <a href="/gifs/new">Add a new Gif</a>
       {{else}}
        <a id="login">Login</a> <a id="register">register</a>
     {{/if}}  </div>
 
 </header>
-<script src='/javascripts/map.js'></script>
+<script src='/javascripts/map2.js'></script>

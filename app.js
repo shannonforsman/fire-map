@@ -10,11 +10,22 @@ var parseString = require('xml2js').parseString;
 var Twitter = require('twitter');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var session = require('express-session')
 var autolinker = require( 'autolinker' )
+var hbs = require('hbs')
+var cookieSession = require('cookie-session')
+var db = require('monk')(process.env.MONGOLAB_URI)
+var fireUsers = db.get('users')
+
 
 
 var app = express();
+
+app.set('trust proxy', 1) // trust first proxy
+
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.KEY1, process.env.KEY2]
+}))
 
 var client = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
@@ -23,13 +34,13 @@ var client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+
+hbs.registerPartials(__dirname + '/views/partials');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,14 +49,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'fireMapCookie',
-  name: 'session',
-  resave: true,
-  saveUninitialized: true
-}))
 
-
+app.use(function(req, res, next){
+  if (req.session.id) {
+    console.log('hi')
+    req.session.id
+    fireUsers.findOne({_id: req.session.id}, function (err, doc) {
+      app.locals.id = req.session.id
+    })
+  } else {
+    console.log('n0')
+    app.locals.id = ''
+  }
+  next()
+})
 
 app.use('/', routes);
 app.use('/users', users);
@@ -64,9 +81,23 @@ app.post('/tweets', function(req, res){
     }
   })
 })
+
+
+app.post('/save', function(req, res, next) {
+  var title = req.body.title[0]
+  console.log(title)
+
+  // users.insert(title:  }, function (err, doc) {
+  //       req.session.id = doc._id
+  //       res.redirect('/')
+  //     })
+  res.end()
+});
 //
 
-
+app.get('/cookie', function(req, res) {
+  res.json({id: app.locals.id})
+})
 
 
 app.get('/locations', function(req, res){
