@@ -1,7 +1,11 @@
 var fireLocations = new Orbit()
 var twitter = new Orbit()
+var remove = new Orbit()
 
 google.maps.event.addDomListener(window, 'load', initialize)
+
+var boxText1 = document.createElement("div");
+    boxText1.id = "boxText1";
 
 var google
 var map
@@ -38,7 +42,7 @@ function initialize () {
 
 }
 
-fireLocations.get('/locations', function () {
+fireLocations.get('/saved-locations', function () {
   var locations = JSON.parse(this.response)
   var gmarkers = []
   locations.forEach(function (elem) {
@@ -56,16 +60,25 @@ fireLocations.get('/locations', function () {
       this.setIcon('/images/fire2.png')
       var content = ''
       map.setCenter(marker.getPosition())
+
+      google.maps.event.addDomListener(boxText1,'click',function(e){
+        if (e.target.id === 'remove') {
+          remove.post('/remove', JSON.stringify(elem), function (){
+          })
+        }
+      })
       twitter.post('/tweets', JSON.stringify(elem), function () {
         var tweetObj = JSON.parse(this.response)
         var tweets = tweetObj.statuses
         if (tweets.length === 0) {
-          infowindow.setContent('<div class="arrow"></div><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>')
+          boxText1.innerHTML = '<div class="arrow"></div><form  action="/remove" method="post"><input type="text" name="title" value="" hidden><input type="submit" value="Remove Fire"></form><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>'
+          infowindow.setContent(boxText1)
         } else {
           tweets.forEach(function (el) {
             content += '<h4>' + el.text + '</h4>'
           })
-          infowindow.setContent('<div class="arrow"></div><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>')
+          boxText1.innerHTML = '<div class="arrow"></div><form  action="/remove" method="post"><input type="text" name="title" value="" hidden><input type="submit" value="Remove Fire"></form><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>'
+          infowindow.setContent(boxText1)
         }
       })
       infowindow.setContent('')

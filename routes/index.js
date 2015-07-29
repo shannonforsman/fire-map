@@ -1,23 +1,22 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 var unirest = require('unirest')
 var bcrypt = require('bcryptjs')
 var db = require('monk')(process.env.MONGOLAB_URI)
 var users = db.get('users')
 
-
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express'});
-});
+router.get('/', function (req, res, next) {
+  res.render('index', { title: 'Express'})
+})
 
-router.get('/saved-fires', function(req, res, next) {
-  res.render('saved-map', { title: 'Express'});
-});
-
-
-
-
+router.get('/saved-fires', function (req, res, next) {
+  if (req.session.id) {
+    res.render('saved-map', { title: 'Express'})
+  } else {
+    res.redirect('/')
+  }
+})
 
 router.post('/register', function (req, res, next) {
   console.log(req.body)
@@ -40,14 +39,13 @@ router.post('/register', function (req, res, next) {
   }
 })
 
-router.get('/refresh', function(req, res) {
+router.get('/refresh', function (req, res) {
   res.redirect('/')
-});
+})
 
 router.get('/logout', function (req, res, next) {
   req.session = null
   res.redirect('/')
 })
 
-
-module.exports = router;
+module.exports = router

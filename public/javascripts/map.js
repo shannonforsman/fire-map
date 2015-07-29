@@ -71,8 +71,7 @@ fireLocations.get('/locations', function () {
 
         var cookie = JSON.parse(this.response)
         console.log(cookie.id)
-        if (cookie.id !== null) {
-          // signInButton = '<form action="/" method="post" onclick="return false"><input type="text" name="save" value="' + elem.title + '" hidden><input type="submit" value="save this fire"></form>'
+        if (cookie.id.length > 0) {
           signInButton = '<a id="save">Save</a>'
         }
 
@@ -87,11 +86,11 @@ fireLocations.get('/locations', function () {
 
         twitter.post('/tweets', JSON.stringify(elem), function () {
 
-          google.maps.event.addListener(infowindow, 'domready', function(e) {
-            google.maps.event.addListener(infowindow, 'click', function(e){
-              console.log(e.target)
-            })
-          })
+          // google.maps.event.addListener(infowindow, 'domready', function(e) {
+          //   google.maps.event.addListener(infowindow, 'click', function(e){
+          //     console.log(e.target)
+          //   })
+          // })
           var tweetObj = JSON.parse(this.response)
           var tweets = tweetObj.statuses
           if (tweets.length === 0) {
@@ -118,10 +117,3 @@ fireLocations.get('/locations', function () {
 function moveMap () {
   map.panBy(0, -200)
 }
-
-// infowindow.addListener("domready", function(e){
-//
-//   if (e.target.className.toLowerCase() === 'marker') {
-//     alert('hi')
-//   }
-// })
