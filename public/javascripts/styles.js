@@ -4,7 +4,11 @@ var infoBoxStyle = {
   height: '550px',
   padding: '16px',
   windowWidth: function() {
-    if (window.innerWidth < 751) {
+    if (window.innerWidth < 450) {
+      this.position = 'relative'
+      this.width = '80%'
+      this.marginTop = '250px'
+    } else if (window.innerWidth < 900) {
       this.bottom = '0'
       this.height = '150px'
     } else if (window.innerWidth < 900) {
