@@ -117,8 +117,12 @@ function moveMap () {
   map.panBy(0, -200)
 }
 
-google.maps.event.addDomListener(window, "resize", function() {
-    var center = map.getCenter();
-    google.maps.event.trigger(map, "resize");
-    map.setCenter(center);
-});
+// google.maps.event.addDomListener(window, "resize", function() {
+//   console.log(window.innerWidth)
+//     var center = map.getCenter();
+//     google.maps.event.trigger(map, "resize");
+//     map.setCenter(center);
+//     if (window.innerWidth < 800) {
+//       infowindow.boxStyle.width = '50px'
+//     }
+// });

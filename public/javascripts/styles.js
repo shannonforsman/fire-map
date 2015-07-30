@@ -3,7 +3,24 @@ var infoBoxStyle = {
   width: '400px',
   height: '550px',
   padding: '16px',
+  windowWidth: function() {
+    if (window.innerWidth < 751) {
+      this.bottom = '0'
+      this.height = '150px'
+    } else if (window.innerWidth < 900) {
+      this.width = '300px'
+      this.height = '200px'
+      this.marginLeft = '-50px'
+    } else if (window.innerWidth < 1160) {
+      this.marginTop = '-100px'
+      this.height = '500px'
+      this.marginLeft = '-50px'
+    }
+  }
 }
+
+infoBoxStyle.windowWidth()
+
 
 var mapStyles = [
   {

@@ -245,6 +245,60 @@ header {
         opacity: .7;
         transition: all 0.3s ease; }
 
-@media (max-width: 1320px) {
+@media (max-width: 1400px) {
   header {
-    width: 660px; } }
+    width: 700px; } }
+
+@media (max-width: 750px) {
+  header {
+    width: 100%;
+    top: 0;
+    bottom: auto; }
+    header .title {
+      background: none;
+      width: 70%;
+      min-height: 0;
+      padding: 16px 16px 0; }
+      header .title h1 {
+        font-size: 30px; }
+      header .title h2 {
+        font-size: 16px;
+        margin-bottom: 0; }
+    header .description {
+      width: 70%;
+      float: left;
+      padding: 16px; }
+      header .description p {
+        font-size: 16px; }
+      header .description #register, header .description .button {
+        position: absolute;
+        top: 48px;
+        right: 16px; }
+      header .description #login, header .description .login {
+        position: absolute;
+        top: 16px;
+        right: 16px; }
+      header .description input {
+        margin: 0 0 16px; }
+      header .description form {
+        width: 256px; }
+        header .description form input[type=submit], header .description form .button {
+          position: relative;
+          right: auto;
+          top: auto; }
+      header .description ul {
+        position: relative;
+        right: 0;
+        margin-bottom: 16px;
+        width: 224px; } }
+
+@media (max-width: 480px) {
+  header .description {
+    width: 100%; }
+    header .description #register, header .description #login, header .description .button, header .description .login {
+      position: relative;
+      top: auto;
+      right: auto;
+      float: left; }
+  header .title {
+    width: 100%; } }
