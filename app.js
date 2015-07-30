@@ -9,7 +9,6 @@ var unirest = require('unirest')
 var parseString = require('xml2js').parseString
 var Twitter = require('twitter')
 var routes = require('./routes/index')
-var users = require('./routes/maps')
 var autolinker = require('autolinker')
 var hbs = require('hbs')
 var cookieSession = require('cookie-session')
@@ -56,8 +55,6 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', routes)
-app.use('/users', users)
-
 
 
 app.post('/tweets', function (req, res) {

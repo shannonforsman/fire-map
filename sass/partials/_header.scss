@@ -1,23 +1,54 @@
 header {
   width: 50%;
-  background: rgba(#2e353d, 0.94);
+  background: rgba($dark-grey, 0.94);
   position: absolute;
   bottom: 32px;
   z-index: 200;
 
-  h1 {
+  .title {
+    background: $dark-grey;
     width: 50%;
-    padding: 32px;
     float: left;
+    padding: 32px;
+    min-height: 187px;
+    h2 {
+      color: $water;
+      font-weight: 100;
+      font-size: 24px;
+    }
+
   }
+
+
   .description {
     width: 50%;
     float: right;
     padding: 32px;
     p {
-      color: $water;
+      color: $super-light-grey;
       border-bottom: none;
-      font-weight: 100;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1.2em;
+      margin-bottom: 16px;
+      padding-bottom: 0;
     }
   }
+
+  form {
+    position: relative;
+
+    img {
+      cursor: pointer;
+      height: 16px;
+      float: right;
+      position: absolute;
+      right: 0;
+      &:hover {
+        opacity: .7;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
 }

@@ -8,6 +8,7 @@ google.maps.event.addDomListener(window, 'load', initialize)
 
 var boxText1 = document.createElement("div");
     boxText1.id = "boxText1";
+    boxText1.style.height = '490px'
 
 
 var google
@@ -15,7 +16,7 @@ var map
 
 var infowindow = new InfoBox({
   disableAutoPan: false,
-  pixelOffset: new google.maps.Size(100, -300),
+  pixelOffset: new google.maps.Size(100, -275),
   zIndex: null,
   boxStyle: infoBoxStyle,
   closeBoxMargin: '0px 0px 16px 16px',
@@ -72,7 +73,7 @@ fireLocations.get('/locations', function () {
         var cookie = JSON.parse(this.response)
         console.log(cookie.id)
         if (cookie.id.length > 0) {
-          signInButton = '<a id="save">Save</a>'
+          signInButton = '<a id="save">Save to Fire map</a>'
         }
 
         google.maps.event.addDomListener(boxText1,'click',function(e){
@@ -86,11 +87,6 @@ fireLocations.get('/locations', function () {
 
         twitter.post('/tweets', JSON.stringify(elem), function () {
 
-          // google.maps.event.addListener(infowindow, 'domready', function(e) {
-          //   google.maps.event.addListener(infowindow, 'click', function(e){
-          //     console.log(e.target)
-          //   })
-          // })
           var tweetObj = JSON.parse(this.response)
           var tweets = tweetObj.statuses
           if (tweets.length === 0) {

@@ -1,7 +1,7 @@
 var infoBoxStyle = {
   background: 'rgba(255,255,255, .85)',
   width: '400px',
-  height: '500px',
+  height: '550px',
   padding: '16px',
 }
 

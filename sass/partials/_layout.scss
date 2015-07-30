@@ -15,7 +15,7 @@ body {
 
  .box {
   overflow: auto;
-  height: 50%;
+  height: 45%;
   padding-right: 16px;
   width: 100%;
 }
@@ -29,5 +29,9 @@ body {
    opacity: .85;
    position: absolute;
    left: -15px;
-   bottom: 80px;
+   bottom: 275px;
+}
+
+html {
+    overflow-y:scroll;
 }

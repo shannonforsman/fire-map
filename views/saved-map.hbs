@@ -1,14 +1,12 @@
 <div id="my-fire-map"></div>
 <header>
-  <h1>Current active U.S. fires</h1>
-  <div class="description">
-    <p id='register-form'>Get up to date information about current fires based on inciweb data and twitter feeds</p>
-    {{#if email}}
-      {{email}}
-      <a href="/logout">Logout</a> <a href="/gifs/new">Add a new Gif</a>
-      {{else}}
-       <a id="login">Login</a> <a id="register">register</a>
-    {{/if}}  </div>
-
+  <div class='title'>
+    <a href='/'><h1>Fire Tracker</h1></a>
+    <h2>Stay up to date on the latest fire news</h2>
+  </div>
+  <div class="description" id='register-form'>
+    <p>Here are the fires that you're currently tracking. Please note that if a fire gets put out, it will automatically be removed from this map.</p>
+    <a class='button' href='/'>View all fires</a><a href="/logout" class='login'>Logout</a>
+  </div>
 </header>
 <script src='/javascripts/map2.js'></script>

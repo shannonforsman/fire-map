@@ -20,8 +20,6 @@ h1 {
   color: $white;
   font-weight: 100;
   margin-bottom: 0;
-  background: $dark-grey;
-
 }
 
 h2 {
@@ -45,8 +43,14 @@ h3 {
 }
 
 a {
-  color: $blue;
+  color: #68C3C4;
   text-decoration: none;
+}
+
+.box {
+  a {
+    color: $blue;
+  }
 }
 
 h4 {
@@ -55,16 +59,98 @@ h4 {
   color: $grey;
 }
 
+small {
+  color:$super-light-grey;
+  font-size: 12px;
+  line-height: 1.2em;
+  a {
+    color: #fff;
+  }
+}
+
 
 p {
   margin-bottom: 16px;
+  padding-bottom: 16px;
   color: $dark-grey-muted;
   font-size: 16px;
   border-bottom: 1px solid #ddd;
-  padding-bottom: 16px;
 }
 
 
 strong {
   font-weight: bold;
+}
+
+.button {
+  border-radius: 4px;
+  color: $water;
+  padding: 5px 20px;
+  text-transform: uppercase;
+  font-size: 12px;
+  border: 2px solid $water;
+  background: none;
+
+  &:hover {
+    transition: all 0.3s ease;
+    background: $dark-grey;
+    cursor: pointer;
+  }
+}
+
+.login {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 5px 0;
+  margin-left: 16px;
+  color: $water;
+
+  &:hover {
+    transition: all 0.3s ease;
+    color: #77FDFF;
+    cursor: pointer;
+  }
+}
+
+input {
+  border: none;
+  padding: 8px 16px;
+  width: 224px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  display: block;
+  outline: none;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  background: red;
+  position: absolute;
+  right: -130px;
+  padding: 16px;
+  font-size: 15px;
+  width: 184px;
+  li {
+    color: #fff;
+    font-weight: 100;
+  }
+}
+
+#save, .remove {
+  position: absolute;
+  margin-top: -36px;
+  background-color: #68c3c4;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.3s ease;
+    background-color: $water;
+  }
 }
