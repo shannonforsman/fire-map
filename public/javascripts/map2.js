@@ -69,16 +69,17 @@ fireLocations.get('/saved-locations', function () {
         }
       })
       twitter.post('/tweets', JSON.stringify(elem), function () {
+        console.log()
         var tweetObj = JSON.parse(this.response)
         var tweets = tweetObj.statuses
         if (tweets.length === 0) {
-          boxText1.innerHTML = '<div class="arrow"></div><form  action="/remove" method="post"><input type="text" name="title" value="" hidden style="display: none"><input type="submit" value="Remove Fire"  class="remove"></form><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>'
+          boxText1.innerHTML = '<div class="arrow"></div><form  action="/remove" method="post"><input type="text" name="title" value="' + elem.title + '" hidden style="display: none"><input type="submit" value="Remove Fire"  class="remove"></form><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>'
           infowindow.setContent(boxText1)
         } else {
           tweets.forEach(function (el) {
             content += '<h4>' + el.text + '</h4>'
           })
-          boxText1.innerHTML = '<div class="arrow"></div><form  action="/remove" method="post"><input type="text" name="title" value="" hidden style="display: none"><input type="submit" value="Remove Fire" class="remove"></form><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>'
+          boxText1.innerHTML = '<div class="arrow"></div><form  action="/remove" method="post"><input type="text" name="title" value="' + elem.title + '" hidden style="display: none"><input type="submit" value="Remove Fire" class="remove"></form><h2>' + elem.title + '</h2><p class="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>'
           infowindow.setContent(boxText1)
         }
       })

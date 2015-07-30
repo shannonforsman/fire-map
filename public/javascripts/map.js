@@ -6,6 +6,8 @@ var saveLocation = new Orbit()
 
 google.maps.event.addDomListener(window, 'load', initialize)
 
+
+
 var boxText1 = document.createElement("div");
     boxText1.id = "boxText1";
     boxText1.style.height = '490px'
@@ -27,6 +29,7 @@ var infowindow = new InfoBox({
 })
 
 function initialize () {
+
   var myLatlng = new google.maps.LatLng(40.042119, -100.260929)
   var mapOptions = {
     zoom: 5,
@@ -113,3 +116,9 @@ fireLocations.get('/locations', function () {
 function moveMap () {
   map.panBy(0, -200)
 }
+
+google.maps.event.addDomListener(window, "resize", function() {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
+});

@@ -75,28 +75,33 @@ app.post('/tweets', function (req, res) {
 app.post('/save', function (req, res, next) {
   var title = req.body.title[0]
   fireUsers.findOne({_id: req.session.id}, function (err, doc) {
-    if (doc.savedFires.indexOf(title) === -1) {
+    if (doc.savedFires.indexOf(title) < 0 ) {
       doc.savedFires.push(title)
-      fireUsers.update({_id: req.session.id}, {$set: {savedFires: doc.savedFires}}, function (err, doc) {})
+      fireUsers.update({_id: req.session.id}, {$set: {savedFires: doc.savedFires}}, function (err, doc) {
+        res.end()
+      })
+    } else {
+      res.end()
     }
   })
-  res.end()
 })
 
 app.post('/remove', function (req, res, next) {
-  var title = req.body.title[0]
-  console.log(title)
+  console.log(req.body.title)
+  var title = req.body.title
+  console.log('title to be removed' + title)
   fireUsers.findOne({_id: req.session.id}, function (err, doc) {
+    console.log('array of saved fires' + doc.savedFires)
+
     var index = doc.savedFires.indexOf(title)
-    console.log(doc.savedFires)
-      doc.savedFires.splice(index, 1)
-        console.log(doc.savedFires)
-      fireUsers.update({_id: req.session.id}, {$set: {savedFires: doc.savedFires}}, function (err, doc) {
-          res.redirect('/saved-fires')
-      })
+    console.log('index of fire to be removed' + index)
+    doc.savedFires.splice(index, 1)
+    console.log('array after splice' + doc.savedFires)
+    fireUsers.update({_id: req.session.id}, {$set: {savedFires: doc.savedFires}}, function (err, doc) {
+      res.redirect('/saved-fires')
     })
+  })
 })
-//
 
 app.get('/cookie', function (req, res) {
   res.json({id: app.locals.id})
