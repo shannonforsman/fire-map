@@ -2,6 +2,8 @@ var register = document.getElementById('register')
 var login = document.getElementById('login')
 var form = document.getElementById('form')
 var inner = document.getElementById('inner')
+var minimize = document.getElementById('minimize')
+var registerForm = document.getElementById('register-form')
 
 
 register.addEventListener('click', function(e) {
@@ -23,4 +25,8 @@ form.addEventListener('click', function(e) {
   if (e.target.id === 'close') {
     inner.style.display = 'block'
   }
+})
+
+minimize.addEventListener('click', function(e) {
+  registerForm.classList.toggle("minimize")
 })

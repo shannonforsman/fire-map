@@ -5,15 +5,15 @@ var infoBoxStyle = {
   padding: '16px',
   windowWidth: function() {
     if (window.innerWidth < 450) {
-      this.position = 'relative'
-      this.width = '80%'
-      this.marginTop = '250px'
-    } else if (window.innerWidth < 900) {
-      this.bottom = '0'
-      this.height = '150px'
+      this.marginTop = '150px'
+    } else if (window.innerWidth < 700) {
+      this.marginTop = '100px'
+      this.height = '450px'
+      this.marginLeft = '-40px'
+      this.width = '300px'
     } else if (window.innerWidth < 900) {
       this.width = '300px'
-      this.height = '200px'
+      this.height = '400px'
       this.marginLeft = '-50px'
     } else if (window.innerWidth < 1160) {
       this.marginTop = '-100px'

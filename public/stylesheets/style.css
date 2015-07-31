@@ -243,7 +243,34 @@ header {
       right: 0; }
       header form img:hover {
         opacity: .7;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
         transition: all 0.3s ease; }
+  header .minimize {
+    height: 0;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+    header .minimize p, header .minimize a {
+      display: none;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease; }
+    header .minimize #minimize {
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      top: 40px; }
+  header #minimize {
+    display: none; }
 
 @media (max-width: 1400px) {
   header {
@@ -263,13 +290,15 @@ header {
         font-size: 30px; }
       header .title h2 {
         font-size: 16px;
-        margin-bottom: 0; }
+        margin-bottom: 0;
+        font-weight: 500; }
     header .description {
       width: 70%;
       float: left;
-      padding: 16px; }
+      padding: 8px 16px 16px; }
       header .description p {
-        font-size: 16px; }
+        font-size: 16px;
+        font-weight: 500; }
       header .description #register, header .description .button {
         position: absolute;
         top: 48px;
@@ -290,7 +319,16 @@ header {
         position: relative;
         right: 0;
         margin-bottom: 16px;
-        width: 224px; } }
+        width: 224px; }
+    header #minimize {
+      display: block;
+      float: right;
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer; } }
 
 @media (max-width: 480px) {
   header .description {

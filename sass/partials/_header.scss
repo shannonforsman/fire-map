@@ -47,9 +47,25 @@ header {
       right: 0;
       &:hover {
         opacity: .7;
-        transition: all 0.3s ease;
+        @include transition(all .3s ease);
       }
     }
+  }
+  .minimize {
+    height: 0;
+    @include transition(all .3s ease);
+    p, a {
+      display: none;
+      @include transition(all .3s ease);
+    }
+    #minimize {
+      @include rotate(45deg);
+      @include transition(all .3s ease);
+      top: 40px;
+    }
+  }
+  #minimize {
+    display: none;
   }
 
 }
