@@ -27,6 +27,7 @@ form.addEventListener('click', function(e) {
   }
 })
 
-minimize.addEventListener('click', function(e) {
+minimize.addEventListener('click', function() {
+  console.log('clicked minimize')
   registerForm.classList.toggle("minimize")
 })

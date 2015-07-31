@@ -10,7 +10,7 @@ var infoBoxStyle = {
       this.marginTop = '100px'
       this.height = '450px'
       this.marginLeft = '-40px'
-      this.width = '300px'
+      this.width = '100%'
     } else if (window.innerWidth < 900) {
       this.width = '300px'
       this.height = '400px'
