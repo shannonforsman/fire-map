@@ -59,14 +59,11 @@ fireLocations.get('/locations', function () {
       map: map,
       icon: iconBase
     })
-
-
     gmarkers.push(marker)
     google.maps.event.addListener(marker, 'click', function (e) {      // marker.setIcon("/images/fire.png")
       for (var i = 0; i < gmarkers.length; i++) {
         gmarkers[i].setIcon('/images/fire3.png')
       }
-
       this.setIcon('/images/fire2.png')
       var content = ''
       var signInButton = ''
