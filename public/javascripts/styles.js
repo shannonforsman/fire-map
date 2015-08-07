@@ -22,7 +22,6 @@ var infoBoxStyle = {
     }
   }
 }
-
 infoBoxStyle.windowWidth()
 
 
