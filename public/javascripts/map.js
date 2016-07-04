@@ -89,17 +89,18 @@ fireLocations.get('/locations', function () {
 
           var tweetObj = JSON.parse(this.response)
           var tweets = tweetObj.statuses
+          var boxhtml;
           if (tweets.length === 0) {
 
-            boxText1.innerHTML = '<div class="arrow"></div>' + signInButton + '<h2>' + elem.title + '</h2><p class="description" id="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>'
+            boxhtml = '<div class="arrow"></div>' + signInButton + '<h2>' + elem.title + '</h2><p class="description" id="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>'
 
             infowindow.setContent(boxText1)
           } else {
             tweets.forEach(function (el) {
               content += '<h4>' + el.text + '</h4>'
             })
-            boxText1.innerHTML ='<div class="arrow"></div>' + signInButton + '<h2>' + elem.title + '</h2><p class="description" id="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>'
-            infowindow.setContent(boxText1)
+            boxhtml ='<div class="arrow"></div>' + signInButton + '<h2>' + elem.title + '</h2><p class="description" id="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box">' + content + '</div>'
+            infowindow.setContent(boxhtml)
           }
         })
       })
@@ -113,13 +114,3 @@ fireLocations.get('/locations', function () {
 function moveMap () {
   map.panBy(0, -200)
 }
-
-// google.maps.event.addDomListener(window, "resize", function() {
-//   console.log(window.innerWidth)
-//     var center = map.getCenter();
-//     google.maps.event.trigger(map, "resize");
-//     map.setCenter(center);
-//     if (window.innerWidth < 800) {
-//       infowindow.boxStyle.width = '50px'
-//     }
-// });
