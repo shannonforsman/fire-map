@@ -77,7 +77,6 @@ fireLocations.get('/locations', function () {
         }
 
         google.maps.event.addDomListener(boxText1,'click',function(e){
-          console.log(elem)
           if (e.target.id === 'save') {
             saveLocation.post('/save', JSON.stringify(elem), function (){
               e.target.innerHTML = 'saved!'
@@ -95,7 +94,7 @@ fireLocations.get('/locations', function () {
 
             boxhtml = '<div class="arrow"></div>' + signInButton + '<h2>' + elem.title + '</h2><p class="description" id="description"><strong>Description: </strong>' + elem.description[0].substring(0, 240) + '...<a href=' + elem.link[0] + ' target="_blank"> Read More</a></p><h3>Recent Tweets</h3><div class="box"><h4>Sorry, there are no tweets on this fire</h4></div>'
 
-            infowindow.setContent(boxText1)
+            infowindow.setContent(boxhtml)
           } else {
             tweets.forEach(function (el) {
               content += '<h4>' + el.text + '</h4>'
